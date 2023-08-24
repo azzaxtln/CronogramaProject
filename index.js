@@ -21,7 +21,7 @@ const userInput = req.body.put;
 const { nameDaysOfWeek } = week();
 userInputArray.push(userInput);
 
-res.render("index.ejs", {userInputArray, nameDaysOfWeek})
+res.redirect("/");
 })
 
 
