@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <main>
+
+      <h1>Hoje eu irei estudar:</h1>
+
+      <div class="metasEstudos">
+        <div class="data">
+            <h2>Hoje é <%= nameDaysOfWeek %> :D</h2>
+        </div>
+        <div class="materias">
+
+            <% if (locals.userInputArray) { %>
+                <% locals.userInputArray.forEach((input, index) => { %>
+                  <% let id = "materia_" + index; %>
+          <div class="mat">
+            <input type="checkbox" name="<%= id %>" id="<%= id %>" />
+            <label for="<%= id %>" class="materia"><span><%= input %></span></label>
+          </div>
+          <% }); %> <% } %>
+        </div>
+
+        <form action="submit" method="post">
+          <input
+            class="center-placeholder"
+            type="text"
+            name="put"
+            id=""
+            placeholder="Digite a matéria"
+          />
+          <button type="submit" class="btn"><i class="fas fa-plus"></i></button>
+        </form>
+      </div>
+    </main>
+
+    <script>
+
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach((checkbox) => {
+          checkbox.addEventListener("change", function () {
+            const label = document.querySelector(`label[for="${checkbox.id}"]`);
+
+            if (checkbox.checked) {
+              label.classList.add("riscado");
+            } else {
+              label.classList.remove("riscado");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
